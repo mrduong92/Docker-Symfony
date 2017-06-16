@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+    db:
+      image: mariadb
+      restart: always
+      ports:
+        - "33060:3306"
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: symfony
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: secret
+      volumes:
+        - ~/apps/volumes/mysql:/var/lib/mysql # database files
+    php:
+        build: php7-fpm
+        volumes:
+          - ~/apps/sfprojects:/var/www/symfony
+          - ./logs/symfony:/var/www/symfony/app/logs
+    nginx:
+        build: nginx
+        ports:
+            - 8008:80
+        volumes_from:
+            - php
+        volumes:
+            - ./logs/nginx/:/var/log/nginx

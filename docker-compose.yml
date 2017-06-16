@@ -17,7 +17,7 @@ services:
         build: php7-fpm-symfony
         volumes:
           - ~/apps/sfprojects:/var/www/vpc2.0
-          - ./logs/symfony:/var/www/symfony/app/logs
+          - ./logs/vpc2.0:/var/www/vpc2.0/app/logs
     nginx:
         build: nginx
         ports:

@@ -11,12 +11,15 @@ RUN mkdir -p /usr/local/bin \
 	&& curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony \ 
  	&& chmod a+x /usr/local/bin/symfony
 
-RUN cd /var/www/ \
-	&& symfony new vpc2.0 2.8
-
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
+
+RUN cd /var/www/ \
+	&& symfony new vpc2.0 2.8 \
+	&& composer install \
+	&& chown -R www-data:www-data app/cache \
+	&& chown -R www-data:www-data app/logs
 
 # Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo pdo_mysql

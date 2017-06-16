@@ -17,8 +17,11 @@ $ sudo echo "171.17.0.1 symfony.dev" >> /etc/hosts
 3. Prepare Symfony app
 
   i. Update app/config/parameters.yml
-  ii. Composer install & create database
+  
+  ii. Composer install
+  
       $ docker-compose exec php bash
+      
       $ composer install
       
 4. Enjoy: http://symfony.dev

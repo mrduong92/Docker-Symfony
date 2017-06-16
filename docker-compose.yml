@@ -14,9 +14,9 @@ services:
       volumes:
         - ~/apps/volumes/mysql:/var/lib/mysql # database files
     php:
-        build: php7-fpm
+        build: php7-fpm-symfony
         volumes:
-          - ~/apps/sfprojects:/var/www/symfony
+          - ~/apps/sfprojects:/var/www/vpc2.0
           - ./logs/symfony:/var/www/symfony/app/logs
     nginx:
         build: nginx
